@@ -6,6 +6,10 @@ describe 'giphy weather maker' do
     g_weather_maker = GiphyWeatherMaker.new(location)
 
     expect(g_weather_maker).to be_an_instance_of(GiphyWeatherMaker)
-    expect(g_weather_maker.daily_gif).to be_a(Array)
+    expect(g_weather_maker.gif_daily_weather).to be_a(Array)
+
+    g_weather_maker.gif_daily_weather.each do |gif_day|
+      expect(gif_day.gif_url).to include("https://giphy.com")
+    end
   end
 end

@@ -5,8 +5,7 @@ class DayWeather
               :temp_high,
               :temp_low,
               :visibility,
-              :icon,
-              :gif_url
+              :icon
 
   def initialize(day_weather_data)
     @time = day_weather_data[:time]
@@ -16,7 +15,5 @@ class DayWeather
     @temp_high = day_weather_data[:temperatureHigh]
     @temp_low = day_weather_data[:temperatureLow]
     @visibility = day_weather_data[:visibility]
-    # gif_url = GiphyService.GiphyService.new.get_gif(day_weather_data[:summary].gsub(/[^0-9a-z ]/i, ''))
-    # @gif_url = gif_url
   end
 end

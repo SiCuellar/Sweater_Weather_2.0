@@ -52,12 +52,4 @@ describe 'DayWeather' do
     expect(day_weather.temp_high).to eq(44.53)
     expect(day_weather.temp_low).to eq(19.12)
   end
-
-  # it "can make gif url" do
-  #   day_data = {:time=>1550991600,
-  #                :summary=>"Snow"}
-  #
-  #   expect(day_data).to have_key(gif_url)
-  # 
-  # end
 end

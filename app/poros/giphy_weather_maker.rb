@@ -1,15 +1,13 @@
 class GiphyWeatherMaker
   def initialize(location)
     @location = location
-    @forecast_organizer = ForecastOrganizer.new(location)
-
+    coordinates = GoogleMapsService.new.get_coordinates(location)
+    @weather_data = DarkskyService.new.get_forcast(coordinates[:lat], coordinates[:lng])
   end
 
-  def daily_gif
-    @forecast_organizer.daily_weather.map do |day|
-      GiphyService.new.get_gif(day.summary)
-    end
-    # binding.pry
+  def gif_daily_weather
+    @weather_data[:daily][:data].map do |day_data|
+      GifDayWeather.new(day_data)
+    end.first(7)
   end
-
 end
