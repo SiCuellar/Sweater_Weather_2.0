@@ -1,7 +1,12 @@
 class GiphyService
 
   def get_gif(summary)
-    get_json("search?q=#{summary}&api_key=#{ENV["GIPHY_KEY"]}&limit=1")[:data][0][:url]
+    if summary.nil? || summary.empty?
+      # binding.pry
+      "https://media.giphy.com/media/dZCBzEPwAi9WNM3Oo9/giphy.gif"
+    else
+      get_json("search?q=#{summary}&api_key=#{ENV["GIPHY_KEY"]}&limit=1")[:data][0][:url]
+    end
   end
 
   private
