@@ -1,18 +1,19 @@
 class FlickrService
-  # def get_forcast(lat,long)
-  #   get_json("/forecast/#{ENV["DARK_SKY_KEY"]}/#{lat},#{long}")
-  # end
-  #
-  # private
-  #
-  # def get_json(path)
-  #   response = conn.get(path)
-  #   JSON.parse(response.body, symbolize_names: true)
-  # end
-  #
-  # def conn
-  #   @conn = Faraday.new(url: "https://api.darksky.net") do |faraday|
-  #     faraday.adapter  Faraday.default_adapter
-  #   end
-  # end
+
+  def get_city_backround(location)
+    get_json("?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=#{ENV['FLICKR_KEY']}&tags=#{location}")[:photos][:photo].sample
+  end
+
+  private
+
+  def get_json(path)
+    response = conn.get(path)
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def conn
+    @conn = Faraday.new(url: "https://api.flickr.com/services/rest/") do |faraday|
+      faraday.adapter  Faraday.default_adapter
+    end
+  end
 end
