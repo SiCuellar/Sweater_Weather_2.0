@@ -19,5 +19,21 @@ describe "user can favorite locations" do
     expect(response).to be_successful
 
     expect(Favorite.last).to be_an_instance_of(Favorite)
+    expect(Favorite.last.location).to eq("denver,co")
+  end
+
+  it 'returns failing status code when incorrect api key' do
+    user = User.create(email: 'whatever@example.com', password: 'password', api_key: 'turtle')
+
+    headers = { "Content_Type" => "application/json", "Accept" => "application/json" }
+
+    post "/api/v1/favorites", :params => {"location": "Denver, CO",
+                                          "api_key": "silverwashere",
+                                         "controller"=>"api/v1/favorites",
+                                         "action"=>"create",
+                                         "user"=>{"email"=>"whatever@example.com"}},
+                              :headers => headers
+
+    expect(response.status).to eq(404)
   end
 end
