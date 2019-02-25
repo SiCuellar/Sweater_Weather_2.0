@@ -1,4 +1,6 @@
 class GiphyWeatherMaker
+  attr_reader :location
+
   def initialize(location)
     @location = location
     coordinates = GoogleMapsService.new.get_coordinates(location)
