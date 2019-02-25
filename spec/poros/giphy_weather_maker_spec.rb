@@ -6,6 +6,6 @@ describe 'giphy weather maker' do
     g_weather_maker = GiphyWeatherMaker.new(location)
 
     expect(g_weather_maker).to be_an_instance_of(GiphyWeatherMaker)
-    # expect(forecast_organizer.current_weather).to be_an_instance_of(CurrentWeather)
+    expect(g_weather_maker.daily_gif).to be_a(Array)
   end
 end
