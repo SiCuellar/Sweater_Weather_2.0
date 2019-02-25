@@ -17,7 +17,6 @@ describe "user can favorite locations" do
     expect(request.params.keys).to include("api_key")
 
     expect(response).to be_successful
-
     expect(Favorite.last).to be_an_instance_of(Favorite)
     expect(Favorite.last.location).to eq("denver,co")
   end
@@ -34,6 +33,6 @@ describe "user can favorite locations" do
                                          "user"=>{"email"=>"whatever@example.com"}},
                               :headers => headers
 
-    expect(response.status).to eq(404)
+    expect(response.status).to eq(401)
   end
 end
