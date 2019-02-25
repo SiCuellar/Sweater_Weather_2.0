@@ -13,4 +13,10 @@ class ForecastOrganizer
       DayWeather.new(day_data)
     end.first(7)
   end
+
+  def hourly_weather
+    @weather_data[:hourly][:data].map do |hour_data|
+      HourWeather.new(hour_data)
+    end.first(8)
+  end
 end
