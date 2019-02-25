@@ -1,6 +1,6 @@
 class ForecastOrganizer
   attr_reader :location
-  
+
   def initialize(location)
     @location = location
     coordinates = GoogleMapsService.new.get_coordinates(location)
@@ -22,4 +22,5 @@ class ForecastOrganizer
       HourWeather.new(hour_data)
     end.first(8)
   end
+
 end
