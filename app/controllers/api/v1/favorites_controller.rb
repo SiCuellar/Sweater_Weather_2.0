@@ -19,4 +19,15 @@ class Api::V1::FavoritesController < ApplicationController
       render json: "Fail", status: 401
     end
   end
+
+  def destroy
+    user = User.find_by(api_key: params[:api_key])
+    if user
+      unfav = user.favorites.find_by(location: params[:location])
+      unfav.destroy
+      render json: "Good Job", status: 204
+    else
+      render json: "Fail", status: 401
+    end
+  end
 end
