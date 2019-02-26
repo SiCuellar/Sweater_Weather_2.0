@@ -59,6 +59,16 @@ describe "user can favorite locations" do
     expect(response).to be_successful
     expect(response.status).to eq(200)
 
+    favorite_cites_forecast = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:favorites_cities_weather]
+    expect(favorite_cites_forecast).to be_a(Array)
+    expect(favorite_cites_forecast.count).to eq(3)
+    favorite_cites_forecast.each do |fav_city|
+      expect(fav_city).to have_key(:location)
+      expect(fav_city[:weather_data]).to have_key(:currently)
+      expect(fav_city[:weather_data]).to have_key(:hourly)
+      expect(fav_city[:weather_data]).to have_key(:daily)
+    end
+
     expect(Favorite.last).to be_an_instance_of(Favorite)
     expect(Favorite.first).to be_an_instance_of(Favorite)
   end

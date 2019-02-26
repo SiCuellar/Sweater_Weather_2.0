@@ -1,4 +1,6 @@
 class FavoriteDataMaker
+  attr_reader :user_id
+
   def initialize(user)
     @user_id = user.id
     @user = user
@@ -6,10 +8,8 @@ class FavoriteDataMaker
   end
 
   def favorites_cities_weather
-    x=@favs.map do |fav_location|
-      ForecastOrganizer.new(fav_location)
+    @favs.map do |favorite|
+      ForecastOrganizer.new(favorite.location)
     end
-    binding.pry
-
   end
 end
