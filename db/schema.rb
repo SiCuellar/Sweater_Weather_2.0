@@ -21,11 +21,6 @@ ActiveRecord::Schema.define(version: 2019_02_25_225920) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "u_sers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_favorites", force: :cascade do |t|
     t.bigint "favorite_id"
     t.bigint "user_id"

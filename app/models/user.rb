@@ -15,5 +15,6 @@ class User < ApplicationRecord
     user_info[:password_confirmation] = params["password_confirmation"]
     user_info[:api_key] = SecureRandom.uuid
     User.create(user_info)
+    # binding.pry
   end
 end
