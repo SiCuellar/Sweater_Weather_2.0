@@ -1,7 +1,6 @@
 class Api::V1::FavoritesController < ApplicationController
   def index
     user = User.find_by(api_key: params[:api_key])
-    # binding.pry
     if user
       render json: FavoritesSerializer.new(FavoriteDataMaker.new(user))
     else
@@ -23,8 +22,8 @@ class Api::V1::FavoritesController < ApplicationController
   def destroy
     user = User.find_by(api_key: params[:api_key])
     if user
-      unfav = user.favorites.find_by(location: params[:location])
-      unfav.destroy
+      notfav = user.favorites.find_by(location: params[:location].split.join.downcase)
+      notfav.destroy
       render json: "Good Job", status: 204
     else
       render json: "Fail", status: 401
